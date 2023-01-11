@@ -1,9 +1,7 @@
 import { createContext, useContext } from 'react'
+import { IThemeContextAppData } from 'shared/contexts'
 
-interface IThemeContextAppData {
-  themeName: 'light' | 'dark'
-  toggleTheme: () => void
-}
+
 const ThemeContextApp = createContext({} as IThemeContextAppData)
 
 export const useAppThemeContext = () => {

@@ -1,15 +1,12 @@
-import { ThemeProvider } from '@mui/material'
-import { FC, ReactNode, useCallback, useMemo, useState } from 'react'
-
-import { ThemeContextApp } from './'
 import { Box } from '@mui/system'
-import { LightTheme,DarkTheme } from '../../themes'
+import { ThemeProvider } from '@mui/material'
+import { FC, useCallback, useMemo, useState } from 'react'
 
-interface ThemeProviderAppProps {
-  children: ReactNode
-}
+import { IThemeProviderAppProps } from 'shared/contexts'
+import { LightTheme, DarkTheme } from 'shared/themes'
+import { ThemeContextApp } from '.'
 
-const ThemeProviderApp: FC<ThemeProviderAppProps> = ({ children }) => {
+const ThemeProviderApp: FC<IThemeProviderAppProps> = ({ children }) => {
   const [themeName, setThemeName] = useState<'light' | 'dark'>('light')
   const toggleTheme = useCallback(() => {
     setThemeName(prevThemeName => (prevThemeName === 'light' ? 'dark' : 'light'))
@@ -21,8 +18,7 @@ const ThemeProviderApp: FC<ThemeProviderAppProps> = ({ children }) => {
   return (
     <ThemeContextApp.Provider value={{ themeName, toggleTheme }}>
       <ThemeProvider theme={theme}>
-        <Box width="100vw" height="100vh" bgcolor={theme.palette.background.default}
-        >
+        <Box width='100vw' height='100vh' bgcolor={theme.palette.background.default}>
           {children}
         </Box>
       </ThemeProvider>
