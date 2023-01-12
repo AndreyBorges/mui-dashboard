@@ -7,10 +7,10 @@ import { useDrawerContext } from '../../contexts'
 interface IBaseLayoutProps {
   children: ReactNode
   title: string
-  toolbar?: ReactNode
+  listingTools?: ReactNode
 }
 
-const BaseLayout: FC<IBaseLayoutProps> = ({ children, title, toolbar }) => {
+const BaseLayout: FC<IBaseLayoutProps> = ({ children, title, listingTools }) => {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
   const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'))
   const theme = useTheme()
@@ -39,7 +39,7 @@ const BaseLayout: FC<IBaseLayoutProps> = ({ children, title, toolbar }) => {
         </Typography>
       </Box>
 
-      {toolbar && <Box>{toolbar}</Box>}
+      {listingTools && <Box>{listingTools}</Box>}
 
       <Box flex={1} overflow='auto'>
         {children}
