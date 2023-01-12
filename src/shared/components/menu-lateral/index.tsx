@@ -10,7 +10,7 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material'
-import { Box } from '@mui/system'
+import { Box } from '@mui/material'
 import { FC } from 'react'
 import { IMenuLateralProps } from 'shared/components/components-types'
 import { useAppThemeContext, useDrawerContext } from 'shared/contexts'

@@ -1,4 +1,4 @@
-import { Box } from '@mui/system'
+import { Box } from '@mui/material'
 import { ThemeProvider } from '@mui/material'
 import { FC, useCallback, useMemo, useState } from 'react'
 
