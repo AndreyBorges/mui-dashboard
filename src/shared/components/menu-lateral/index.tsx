@@ -1,25 +1,15 @@
-import {
-  Avatar,
-  Divider,
-  Drawer,
-  Icon,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  useMediaQuery,
-  useTheme
-} from '@mui/material'
+import { Avatar, Divider, Drawer, List, useMediaQuery, useTheme } from '@mui/material'
 import { Box } from '@mui/system'
 import { FC } from 'react'
 import { IMenuLateralProps } from 'shared/components/components-types'
 import { useDrawerContext } from 'shared/contexts'
+import ListItemLink from './list-item-link'
 
 const MenuLateral: FC<IMenuLateralProps> = ({ children }) => {
   const theme = useTheme()
   const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const { isDrawerOpen,toggleDrawerOpen } = useDrawerContext()
+  const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext()
 
   return (
     <>
@@ -46,12 +36,14 @@ const MenuLateral: FC<IMenuLateralProps> = ({ children }) => {
           <Divider />
           <Box flex={1}>
             <List component='nav'>
-              <ListItemButton>
-                <ListItemIcon>
-                  <Icon>home</Icon>
-                </ListItemIcon>
-                <ListItemText primary='Pagina Inicial' />
-              </ListItemButton>
+              {drawerOptions.map(({ icon, label, path }) => (
+                <ListItemLink
+                  key={path}
+                  {...{ icon, label }}
+                  to={path}
+                  onClick={smDown ? toggleDrawerOpen : undefined}
+                />
+              ))}
             </List>
           </Box>
         </Box>
