@@ -13,10 +13,28 @@
       "email": "andrew@test.com.br"
     },
     {
-      "id": 1,
+      "id": 3,
       "completedName": "Felix Medeiros",
       "cityId": 3,
       "email": "felix@test.com.br"
+    },
+    {
+      "id": 4,
+      "completedName": "Leonam Santana",
+      "cityId": 1,
+      "email": "leonam@test.com.br"
+    },
+    {
+      "id": 5,
+      "completedName": "Vanderson Andrade",
+      "cityId": 2,
+      "email": "vanderson@test.com.br"
+    },
+    {
+      "id": 6,
+      "completedName": "Brenda Santos",
+      "cityId": 2,
+      "email": "brenda@test.com.br"
     }
   ]
 }
