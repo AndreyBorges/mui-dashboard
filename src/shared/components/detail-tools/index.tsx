@@ -1,4 +1,14 @@
-import { Box, Button, Divider, Icon, Paper, Skeleton, useTheme } from '@mui/material'
+import {
+  Box,
+  Button,
+  Divider,
+  Icon,
+  Paper,
+  Skeleton,
+  useTheme,
+  Typography,
+  useMediaQuery
+} from '@mui/material'
 import { FC } from 'react'
 import { IDetailToolsProps } from '../'
 
@@ -23,6 +33,8 @@ const DetailTools: FC<IDetailToolsProps> = ({
   onClickSaveAndClose
 }) => {
   const theme = useTheme()
+  const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const mdDown = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <Box
@@ -43,12 +55,19 @@ const DetailTools: FC<IDetailToolsProps> = ({
           startIcon={<Icon>save</Icon>}
           onClick={onClickSave}
         >
-          Salvar
+          <Typography
+            variant='button'
+            whiteSpace='nowrap'
+            textOverflow='ellipsis'
+            overflow='hidden'
+          >
+            Salvar
+          </Typography>
         </Button>
       )}
       {showSaveButtonLoading && <Skeleton width={110} height={62} />}
 
-      {showSaveAndCloseButton && !showSaveAndCloseButtonLoading && (
+      {showSaveAndCloseButton && !showSaveAndCloseButtonLoading && !smDown && !mdDown && (
         <Button
           variant='outlined'
           color='primary'
@@ -56,10 +75,17 @@ const DetailTools: FC<IDetailToolsProps> = ({
           startIcon={<Icon>save</Icon>}
           onClick={onClickSaveAndClose}
         >
-          Salvar e voltar
+          <Typography
+            variant='button'
+            whiteSpace='nowrap'
+            textOverflow='ellipsis'
+            overflow='hidden'
+          >
+            Salvar e voltar
+          </Typography>
         </Button>
       )}
-      {showSaveAndCloseButtonLoading && <Skeleton width={180} height={60} />}
+      {showSaveAndCloseButtonLoading && !smDown && !mdDown && <Skeleton width={180} height={60} />}
 
       {showDeleteButton && !showDeleteButtonLoading && (
         <Button
@@ -69,12 +95,19 @@ const DetailTools: FC<IDetailToolsProps> = ({
           startIcon={<Icon>delete</Icon>}
           onClick={onClickDelete}
         >
-          Apagar
+          <Typography
+            variant='button'
+            whiteSpace='nowrap'
+            textOverflow='ellipsis'
+            overflow='hidden'
+          >
+            Apagar
+          </Typography>
         </Button>
       )}
       {showDeleteButtonLoading && <Skeleton width={112} height={60} />}
 
-      {showNewButton && !showNewButtonLoading && (
+      {showNewButton && !showNewButtonLoading && !smDown && (
         <Button
           variant='outlined'
           color='primary'
@@ -82,11 +115,26 @@ const DetailTools: FC<IDetailToolsProps> = ({
           startIcon={<Icon>add</Icon>}
           onClick={onClickNew}
         >
-          {textNew}
+          <Typography
+            variant='button'
+            whiteSpace='nowrap'
+            textOverflow='ellipsis'
+            overflow='hidden'
+          >
+            {textNew}
+          </Typography>
         </Button>
       )}
-      {showNewButtonLoading && <Skeleton width={112} height={60} />}
-      <Divider variant='middle' orientation='vertical' />
+      {showNewButtonLoading && !smDown && <Skeleton width={112} height={60} />}
+      {showReturnButton &&
+        (
+          showNewButton ||
+          showSaveButton ||
+          showSaveAndCloseButton ||
+          showDeleteButton
+        ) && (
+          <Divider variant='middle' orientation='vertical' />
+        )}
 
       {showReturnButton && !showReturnButtonLoading && (
         <Button
@@ -96,7 +144,14 @@ const DetailTools: FC<IDetailToolsProps> = ({
           startIcon={<Icon>arrow_back</Icon>}
           onClick={onClickReturn}
         >
-          Voltar
+          <Typography
+            variant='button'
+            whiteSpace='nowrap'
+            textOverflow='ellipsis'
+            overflow='hidden'
+          >
+            Voltar
+          </Typography>
         </Button>
       )}
       {showReturnButtonLoading && <Skeleton width={108} height={60} />}
