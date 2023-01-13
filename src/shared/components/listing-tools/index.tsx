@@ -37,7 +37,7 @@ const ListingTools: FC<IListingToolsProps> = ({
             variant='contained'
             color='primary'
             disableElevation
-            endIcon={<Icon>add</Icon>}
+            startIcon={<Icon>add</Icon>}
             onClick={clickingOnNew}
           >
             {newButtonText}
