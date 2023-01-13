@@ -1,8 +1,9 @@
 import axios from 'axios'
+import { Environment } from 'shared/environment'
 import { errorInterceptor, successInterceptor } from './interceptors'
 
 const Api = axios.create({
-  baseURL: 'http://localhost:3333',
+  baseURL: Environment.URL_BASE,
   headers: {
     'Content-Type': 'application/json'
   }
