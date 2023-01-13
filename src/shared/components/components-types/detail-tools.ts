@@ -4,17 +4,17 @@ export interface IDetailToolsProps {
   showReturnButton?: boolean
   showDeleteButton?: boolean
   showSaveButton?: boolean
-  showSaveAndCloseButton?: boolean
+  showSaveAndReturnButton?: boolean
 
   showNewButtonLoading?: boolean
   showReturnButtonLoading?: boolean
   showDeleteButtonLoading?: boolean
   showSaveButtonLoading?: boolean
-  showSaveAndCloseButtonLoading?: boolean
+  showSaveAndReturnButtonLoading?: boolean
 
   onClickNew?: () => void
   onClickReturn?: () => void
   onClickDelete?: () => void
   onClickSave?: () => void
-  onClickSaveAndClose?: () => void
+  onClickSaveAndReturn?: () => void
 }

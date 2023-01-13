@@ -6,7 +6,7 @@ const Dashboard: FC = () => {
   return (
     <BaseLayout title='Página Inicial' listingTools={
       <DetailTools
-        showSaveAndCloseButton
+        showSaveAndReturnButton
       />
     }>
     </BaseLayout>

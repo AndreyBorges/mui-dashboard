@@ -18,19 +18,19 @@ const DetailTools: FC<IDetailToolsProps> = ({
   showReturnButton = true,
   showDeleteButton = true,
   showSaveButton = true,
-  showSaveAndCloseButton = false,
+  showSaveAndReturnButton = false,
 
   showNewButtonLoading = false,
   showReturnButtonLoading = false,
   showDeleteButtonLoading = false,
   showSaveButtonLoading = false,
-  showSaveAndCloseButtonLoading = false,
+  showSaveAndReturnButtonLoading = false,
 
   onClickNew,
   onClickReturn,
   onClickDelete,
   onClickSave,
-  onClickSaveAndClose
+  onClickSaveAndReturn
 }) => {
   const theme = useTheme()
   const smDown = useMediaQuery(theme.breakpoints.down('sm'))
@@ -67,13 +67,13 @@ const DetailTools: FC<IDetailToolsProps> = ({
       )}
       {showSaveButtonLoading && <Skeleton width={110} height={62} />}
 
-      {showSaveAndCloseButton && !showSaveAndCloseButtonLoading && !smDown && !mdDown && (
+      {showSaveAndReturnButton && !showSaveAndReturnButtonLoading && !smDown && !mdDown && (
         <Button
           variant='outlined'
           color='primary'
           disableElevation
           startIcon={<Icon>save</Icon>}
-          onClick={onClickSaveAndClose}
+          onClick={onClickSaveAndReturn}
         >
           <Typography
             variant='button'
@@ -85,7 +85,7 @@ const DetailTools: FC<IDetailToolsProps> = ({
           </Typography>
         </Button>
       )}
-      {showSaveAndCloseButtonLoading && !smDown && !mdDown && <Skeleton width={180} height={60} />}
+      {showSaveAndReturnButtonLoading && !smDown && !mdDown && <Skeleton width={180} height={60} />}
 
       {showDeleteButton && !showDeleteButtonLoading && (
         <Button
@@ -130,7 +130,7 @@ const DetailTools: FC<IDetailToolsProps> = ({
         (
           showNewButton ||
           showSaveButton ||
-          showSaveAndCloseButton ||
+          showSaveAndReturnButton ||
           showDeleteButton
         ) && (
           <Divider variant='middle' orientation='vertical' />
