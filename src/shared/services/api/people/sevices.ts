@@ -4,7 +4,7 @@ import { TPeopleTotCount, IPeople } from '../types'
 
 
 
-const getAll = async (page = 1, filter: ''): Promise<TPeopleTotCount | Error> => {
+const getAll = async (page = 1, filter: string = ''): Promise<TPeopleTotCount | Error> => {
   try {
     const relativeUrl = `/people?${page}=1&_limit=${Environment.LINES_LIMITS}&completedName_like=${filter}`
     const { data, headers } = await Api.get(relativeUrl)
