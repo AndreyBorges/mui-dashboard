@@ -1,14 +1,22 @@
 {
   "people": [
     {
-      "id":1,
-      "name": "John",
-      "age": 30
+      "id": 1,
+      "completedName": "Andrey Airson",
+      "cityId": 1,
+      "email": "andrey@test.com.br"
     },
     {
-      "id":2,
-      "name": "Mary",
-      "age": 25
+      "id": 2,
+      "completedName": "Andrew Adams",
+      "cityId": 1,
+      "email": "andrew@test.com.br"
+    },
+    {
+      "id": 1,
+      "completedName": "Felix Medeiros",
+      "cityId": 3,
+      "email": "felix@test.com.br"
     }
   ]
 }
