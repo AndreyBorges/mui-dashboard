@@ -1,3 +1,3 @@
 export * from './listing-tools'
-export * from './menu-lateral'
+export * from './sidebar'
 export * from './detail-tools'

@@ -12,11 +12,11 @@ import {
 } from '@mui/material'
 import { Box } from '@mui/material'
 import { FC } from 'react'
-import { IMenuLateralProps } from 'shared/components/components-types'
+import { ISidebarProps } from 'shared/components/components-types'
 import { useAppThemeContext, useDrawerContext } from 'shared/contexts'
 import ListItemLink from './list-item-link'
 
-const MenuLateral: FC<IMenuLateralProps> = ({ children }) => {
+const Sidebar: FC<ISidebarProps> = ({ children }) => {
   const theme = useTheme()
   const smDown = useMediaQuery(theme.breakpoints.down('sm'))
 
@@ -24,7 +24,7 @@ const MenuLateral: FC<IMenuLateralProps> = ({ children }) => {
 
   const { toggleTheme, themeName } = useAppThemeContext()
 
-  const handleClick = () => { 
+  const handleClick = () => {
     toggleTheme()
     console.log(themeName)
   }
@@ -83,4 +83,4 @@ const MenuLateral: FC<IMenuLateralProps> = ({ children }) => {
   )
 }
 
-export default MenuLateral
+export default Sidebar

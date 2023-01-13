@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-export interface IMenuLateralProps {
+export interface ISidebarProps {
   children: ReactNode
 }
 
