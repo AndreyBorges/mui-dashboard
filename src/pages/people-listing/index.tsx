@@ -6,14 +6,18 @@ import { PeopleSevices } from 'shared/services'
 import { useDebounce } from 'shared/hooks'
 import { IPeople } from 'shared/services/api/types'
 import {
+  LinearProgress,
+  Pagination,
   Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
+  TableFooter,
   TableHead,
   TableRow
 } from '@mui/material'
+import { Environment } from 'shared/environment'
 
 const PeopleListing: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -26,11 +30,15 @@ const PeopleListing: FC = () => {
     return searchParams.get('search') || ''
   }, [searchParams])
 
+  const page = useMemo(() => {
+    return Number(searchParams.get('page') || '1')
+  }, [searchParams])
+
   useEffect(() => {
     setIsLoading(true)
 
     debounce(() => {
-      PeopleSevices.getAll(1, search).then(response => {
+      PeopleSevices.getAll(page, search).then(response => {
         setIsLoading(false)
 
         if (response instanceof Error) {
@@ -43,7 +51,7 @@ const PeopleListing: FC = () => {
         }
       })
     })
-  }, [search])
+  }, [search, page])
 
   return (
     <BaseLayout
@@ -53,7 +61,9 @@ const PeopleListing: FC = () => {
           showSearchInput
           newButtonText='Nova Pessoa'
           searchText={search}
-          changeInSearchText={text => setSearchParams({ search: text }, { replace: true })}
+          changeInSearchText={text =>
+            setSearchParams({ search: text, page: '1' }, { replace: true })
+          }
         />
       }
     >
@@ -83,6 +93,31 @@ const PeopleListing: FC = () => {
               </TableRow>
             ))}
           </TableBody>
+
+          {totalCount === 0 && !isLoading && <caption>{Environment.LISTING_EMPTY}</caption>}
+
+          <TableFooter>
+            {isLoading && (
+              <TableRow>
+                <TableCell colSpan={3}>
+                  <LinearProgress variant='indeterminate' />
+                </TableCell>
+              </TableRow>
+            )}
+            {totalCount > 0 && totalCount > Environment.LINES_LIMITS && (
+              <TableRow>
+                <TableCell colSpan={3}>
+                  <Pagination
+                    page={page}
+                    count={Math.ceil(totalCount / Environment.LINES_LIMITS)}
+                    onChange={(_, newPage) =>
+                      setSearchParams({ search, page: newPage.toString() }, { replace: true })
+                    } 
+                  />
+                </TableCell>
+              </TableRow>
+            )}
+          </TableFooter>
         </Table>
       </TableContainer>
     </BaseLayout>
