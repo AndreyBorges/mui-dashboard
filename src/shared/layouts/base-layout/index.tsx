@@ -16,7 +16,7 @@ const BaseLayout: FC<IBaseLayoutProps> = ({ children, title, listingTools }) => 
   const theme = useTheme()
   const { toggleDrawerOpen } = useDrawerContext()
   return (
-    <Box height='100%' display='flex' flexDirection='column' gap={1}>
+    <Box height='100%' display='flex' flexDirection='column' gap={1} marginX={3}>
       <Box
         padding={1}
         height={theme.spacing(smDown ? 6 : mdDown ? 8 : 12)}
