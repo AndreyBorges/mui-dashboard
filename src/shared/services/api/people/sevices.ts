@@ -6,16 +6,16 @@ import { TPeopleTotCount, IPeople } from '../types'
 
 const getAll = async (page = 1, filter: string = ''): Promise<TPeopleTotCount | Error> => {
   try {
-    const relativeUrl = `/people?${page}=1&_limit=${Environment.LINES_LIMITS}&completedName_like=${filter}`
+    const relativeUrl = `/people?_page=${page}&_limit=${Environment.LINES_LIMITS}&completedName_like=${filter}`
     const { data, headers } = await Api.get(relativeUrl)
 
-    if (data) {
-      return {
-        data,
-        totalCount: Number(headers['x-total-count'] || Environment.LINES_LIMITS)
-      }
+    if (!data) {
+      return new Error('Erro ao listar os dados')
     }
-    return new Error('Erro ao listar os dados')
+    return {
+      data,
+      totalCount: Number(headers['x-total-count'] || Environment.LINES_LIMITS)
+    }
   } catch (error) {
     console.error(error)
     return new Error((error as { message: string }).message || 'Erro ao buscar os dados')
