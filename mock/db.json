@@ -135,8 +135,8 @@
   ],
   "cities": [
     {
-      "id": 1,
-      "name": "Rio de Janeiro"
+      "name": "Rio de Janeiro",
+      "id": 1
     },
     {
       "name": "Nova Iguaçu",
@@ -147,7 +147,7 @@
       "id": 3
     },
     {
-      "name": "São Paulo",
+      "name": "Niterói",
       "id": 4
     },
     {
@@ -155,8 +155,36 @@
       "id": 5
     },
     {
-      "name": "Barra de São João",
+      "name": "São João de Meriti",
       "id": 6
+    },
+    {
+      "name": "Duque de Caxias",
+      "id": 7
+    },
+    {
+      "name": "São Gonçalo",
+      "id": 8
+    },
+    {
+      "name": "Belford Roxo",
+      "id": 9
+    },
+    {
+      "name": "Volta Redonda",
+      "id": 10
+    },
+    {
+      "name": "Araruama",
+      "id": 11
+    },
+    {
+      "name": "Itaguaí",
+      "id": 12
+    },
+    {
+      "name": "São João da Barra",
+      "id": 13
     }
   ],
   "auth": {
