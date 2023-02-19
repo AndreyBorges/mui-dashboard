@@ -1,11 +1,13 @@
 import { FC, useEffect, useMemo, useState } from 'react'
 import { BaseLayout } from 'shared/layouts'
 import { ListingTools } from 'shared/components'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { PeopleSevices } from 'shared/services'
 import { useDebounce } from 'shared/hooks'
 import { IPeople } from 'shared/services/api/types'
 import {
+  Icon,
+  IconButton,
   LinearProgress,
   Pagination,
   Paper,
@@ -15,13 +17,18 @@ import {
   TableContainer,
   TableFooter,
   TableHead,
-  TableRow
+  TableRow,
+  Theme,
+  useMediaQuery
 } from '@mui/material'
 import { Environment } from 'shared/environment'
 
 const PeopleListing: FC = () => {
+  const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
   const [searchParams, setSearchParams] = useSearchParams()
   const { debounce } = useDebounce(3000)
+  const navigate = useNavigate()
+
   const [rows, setRows] = useState<IPeople[]>([])
   const [totalCount, setTotalCount] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
@@ -47,11 +54,25 @@ const PeopleListing: FC = () => {
         } else {
           setRows(response.data)
           setTotalCount(response.totalCount)
-          console.log(response)
         }
       })
     })
   }, [search, page])
+
+  const handleDelete = (id: number) => {
+    if (window.confirm('Deseja realmente excluir?')) {
+      PeopleSevices.deleteById(id).then(response => {
+        if (response instanceof Error) {
+          alert(response.message)
+          return
+        } else {
+          setRows(rows.filter(row => row.id !== id))
+          setTotalCount(totalCount - 1)
+          alert('Excluído com sucesso!')
+        }
+      })
+    }
+  }
 
   return (
     <BaseLayout
@@ -59,8 +80,9 @@ const PeopleListing: FC = () => {
       listingTools={
         <ListingTools
           showSearchInput
-          newButtonText='Nova Pessoa'
+          newButtonText={smDown ? 'Nova' : 'Nova Pessoa'}
           searchText={search}
+          clickingOnNew={() => navigate('/people/details/new')}
           changeInSearchText={text =>
             setSearchParams({ search: text, page: '1' }, { replace: true })
           }
@@ -78,7 +100,7 @@ const PeopleListing: FC = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Ações</TableCell>
+              <TableCell width={100}>Ações</TableCell>
               <TableCell>Nome Completo</TableCell>
               <TableCell>Email</TableCell>
             </TableRow>
@@ -87,7 +109,14 @@ const PeopleListing: FC = () => {
           <TableBody>
             {rows.map(row => (
               <TableRow key={row.id}>
-                <TableCell>Ações</TableCell>
+                <TableCell>
+                  <IconButton size='small' onClick={() => navigate(`/people/details/${row.id}`)}>
+                    <Icon>edit</Icon>
+                  </IconButton>
+                  <IconButton size='small' onClick={() => handleDelete(row.id)}>
+                    <Icon>delete</Icon>
+                  </IconButton>
+                </TableCell>
                 <TableCell>{row.completedName}</TableCell>
                 <TableCell>{row.email}</TableCell>
               </TableRow>
@@ -112,7 +141,7 @@ const PeopleListing: FC = () => {
                     count={Math.ceil(totalCount / Environment.LINES_LIMITS)}
                     onChange={(_, newPage) =>
                       setSearchParams({ search, page: newPage.toString() }, { replace: true })
-                    } 
+                    }
                   />
                 </TableCell>
               </TableRow>
