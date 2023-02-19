@@ -13,7 +13,7 @@ import {
 import { Box } from '@mui/material'
 import { FC } from 'react'
 import { ISidebarProps } from 'shared/components/components-types'
-import { useAppThemeContext, useDrawerContext } from 'shared/contexts'
+import { useAppThemeContext, useAuthContext, useDrawerContext } from 'shared/contexts'
 import ListItemLink from './list-item-link'
 
 const Sidebar: FC<ISidebarProps> = ({ children }) => {
@@ -23,10 +23,10 @@ const Sidebar: FC<ISidebarProps> = ({ children }) => {
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext()
 
   const { toggleTheme, themeName } = useAppThemeContext()
+  const { logout } = useAuthContext()
 
   const handleClick = () => {
     toggleTheme()
-    console.log(themeName)
   }
 
   return (
@@ -70,7 +70,15 @@ const Sidebar: FC<ISidebarProps> = ({ children }) => {
                 <ListItemIcon>
                   <Icon>{themeName === 'light' ? 'dark_mode' : 'light_mode'}</Icon>
                 </ListItemIcon>
+
                 <ListItemText primary={themeName === 'light' ? 'Tema escuro' : 'Tema claro'} />
+              </ListItemButton>
+
+              <ListItemButton onClick={logout}>
+                <ListItemIcon>
+                  <Icon>logout</Icon>
+                </ListItemIcon>
+                <ListItemText primary='Sair' />
               </ListItemButton>
             </List>
           </Box>
