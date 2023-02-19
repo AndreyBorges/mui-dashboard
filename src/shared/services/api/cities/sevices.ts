@@ -1,10 +1,12 @@
 import { Api } from '../'
 import { Environment } from 'shared/environment'
-import { TPeopleTotCount, IPeople } from '../types'
+import { TCitiesTotCount, ICities } from '../types'
 
-const getAll = async (page = 1, filter: string = ''): Promise<TPeopleTotCount | Error> => {
+
+
+const getAll = async (page = 1, filter: string = ''): Promise<TCitiesTotCount | Error> => {
   try {
-    const relativeUrl = `/people?_page=${page}&_limit=${Environment.LINES_LIMITS}&completedName_like=${filter}`
+    const relativeUrl = `/cities?_page=${page}&_limit=${Environment.LINES_LIMITS}&name_like=${filter}`
     const { data, headers } = await Api.get(relativeUrl)
 
     if (!data) {
@@ -20,9 +22,9 @@ const getAll = async (page = 1, filter: string = ''): Promise<TPeopleTotCount | 
   }
 }
 
-const getById = async (id: number): Promise<IPeople | Error> => {
+const getById = async (id: number): Promise<ICities | Error> => {
   try {
-    const urlId = `/people/${id}`
+    const urlId = `/cities/${id}`
     const { data } = await Api.get(urlId)
 
     if (data) {
@@ -35,10 +37,10 @@ const getById = async (id: number): Promise<IPeople | Error> => {
   }
 }
 
-const create = async (createData: Omit<IPeople, 'id'>): Promise<number | Error> => {
+const create = async (createData: Omit<ICities, 'id'>): Promise<number | Error> => {
   try {
-    const createUrl = `/people`
-    const { data } = await Api.post<IPeople>(createUrl, createData)
+    const createUrl = `/cities`
+    const { data } = await Api.post<ICities>(createUrl, createData)
 
     if (data) {
       return data.id
@@ -50,9 +52,9 @@ const create = async (createData: Omit<IPeople, 'id'>): Promise<number | Error> 
   }
 }
 
-const updateById = async (id: number, userData: IPeople): Promise<void | Error> => {
+const updateById = async (id: number, userData: ICities): Promise<void | Error> => {
   try {
-    const urlId = `/people/${id}`
+    const urlId = `/cities/${id}`
     await Api.put(urlId, userData)
   } catch (error) {
     console.error(error)
@@ -64,15 +66,17 @@ const updateById = async (id: number, userData: IPeople): Promise<void | Error> 
 
 const deleteById = async (id: number): Promise<void | Error> => {
   try {
-    const urlId = `/people/${id}`
+    const urlId = `/cities/${id}`
     await Api.delete(urlId)
   } catch (error) {
     console.error(error)
-    return new Error((error as { message: string }).message || 'Erro ao apagar os dados do usuário')
+    return new Error(
+      (error as { message: string }).message || 'Erro ao apagar os dados do usuário'
+    )
   }
 }
 
-export const PeopleSevices = {
+export const CitiesSevices = {
   getAll,
   getById,
   create,

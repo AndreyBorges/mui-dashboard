@@ -1,1 +1,2 @@
-export * from './services'
+export * from './people-services'
+export * from './cities-services'
