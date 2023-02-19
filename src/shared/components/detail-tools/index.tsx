@@ -40,7 +40,7 @@ const DetailTools: FC<IDetailToolsProps> = ({
     <Box
       component={Paper}
       height={theme.spacing(5)}
-      marginX={1}
+      margin={1}
       padding={1}
       paddingX={2.5}
       display='flex'
