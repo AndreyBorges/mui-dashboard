@@ -22,6 +22,8 @@ import {
   useMediaQuery
 } from '@mui/material'
 import { Environment } from 'shared/environment'
+import { toast, ToastContainer } from 'react-toastify'
+import { useAppThemeContext } from 'shared/contexts/theme-context'
 
 const CitiesListing: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -32,6 +34,7 @@ const CitiesListing: FC = () => {
   const [rows, setRows] = useState<ICities[]>([])
   const [totalCount, setTotalCount] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const { themeName } = useAppThemeContext()
 
   const search = useMemo(() => {
     return searchParams.get('search') || ''
@@ -68,7 +71,16 @@ const CitiesListing: FC = () => {
         } else {
           setRows(rows.filter(row => row.id !== id))
           setTotalCount(totalCount - 1)
-          alert('Excluído com sucesso!')
+          toast.success('Cidade excluida com sucesso!', {
+            position: 'top-right',
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: themeName
+          })
         }
       })
     }
@@ -80,7 +92,7 @@ const CitiesListing: FC = () => {
       listingTools={
         <ListingTools
           showSearchInput
-          newButtonText={smDown ?'Nova': 'Nova Cidade'}
+          newButtonText={smDown ? 'Nova' : 'Nova Cidade'}
           searchText={search}
           clickingOnNew={() => navigate('/cities/details/new')}
           changeInSearchText={text =>
@@ -102,7 +114,6 @@ const CitiesListing: FC = () => {
             <TableRow>
               <TableCell width={100}>Ações</TableCell>
               <TableCell>Nome</TableCell>
-              
             </TableRow>
           </TableHead>
 
@@ -148,6 +159,7 @@ const CitiesListing: FC = () => {
           </TableFooter>
         </Table>
       </TableContainer>
+      <ToastContainer />
     </BaseLayout>
   )
 }

@@ -8,6 +8,8 @@ import { DetailTools } from 'shared/components'
 import { BaseLayout } from 'shared/layouts'
 import { CitiesSevices } from 'shared/services'
 import { IVFormErros, VForm, useVForm, VTextfield } from 'shared/forms'
+import { useAppThemeContext } from 'shared/contexts/theme-context'
+import { toast, ToastContainer } from 'react-toastify'
 
 interface IFromData {
   name: string
@@ -23,6 +25,7 @@ const CitiesDetails: FC = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [city, setCity] = useState('')
   const { formRef, save, saveAndReturn, isSaveAndReturn } = useVForm()
+  const { themeName } = useAppThemeContext()
 
   useEffect(() => {
     if (id !== 'new') {
@@ -56,10 +59,8 @@ const CitiesDetails: FC = () => {
               return
             } else {
               if (isSaveAndReturn()) {
-                alert('Salvo com sucesso!')
                 navigate(`/cities`)
               } else {
-                alert('Salvo com sucesso!')
                 navigate(`/cities/details/${response}`)
               }
             }
@@ -72,8 +73,18 @@ const CitiesDetails: FC = () => {
               return
             } else {
               if (isSaveAndReturn()) {
-                alert('Salvo com sucesso!')
                 navigate(`/cities`)
+              } else {
+                toast.success('Salvo com sucesso!', {
+                  position: 'top-right',
+                  autoClose: 1000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: themeName
+                })
               }
             }
           })
@@ -97,8 +108,7 @@ const CitiesDetails: FC = () => {
           alert(response.message)
           return
         } else {
-          alert('Excluído com sucesso!')
-          navigate('/cities')
+          navigate('/')
         }
       })
     }
@@ -146,6 +156,7 @@ const CitiesDetails: FC = () => {
           </Grid>
         </Box>
       </VForm>
+      <ToastContainer />
     </BaseLayout>
   )
 }

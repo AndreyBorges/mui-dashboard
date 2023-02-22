@@ -22,12 +22,15 @@ import {
   useMediaQuery
 } from '@mui/material'
 import { Environment } from 'shared/environment'
+import { useAppThemeContext } from 'shared/contexts/theme-context'
+import { toast, ToastContainer } from 'react-toastify'
 
 const PeopleListing: FC = () => {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
   const [searchParams, setSearchParams] = useSearchParams()
   const { debounce } = useDebounce(3000)
   const navigate = useNavigate()
+  const { themeName } = useAppThemeContext()
 
   const [rows, setRows] = useState<IPeople[]>([])
   const [totalCount, setTotalCount] = useState(0)
@@ -68,7 +71,16 @@ const PeopleListing: FC = () => {
         } else {
           setRows(rows.filter(row => row.id !== id))
           setTotalCount(totalCount - 1)
-          alert('Excluído com sucesso!')
+          toast.success('Usuario excluido com sucesso!', {
+            position: 'top-right',
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: themeName
+          })
         }
       })
     }
@@ -149,6 +161,7 @@ const PeopleListing: FC = () => {
           </TableFooter>
         </Table>
       </TableContainer>
+      <ToastContainer />
     </BaseLayout>
   )
 }

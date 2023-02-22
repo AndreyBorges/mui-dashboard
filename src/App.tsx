@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { AppRoutes } from 'routes'
 import { DrawerProvider, ThemeProviderApp, AuthProvider } from 'shared/contexts'
 import { Login, Sidebar } from 'shared/components'
+import 'react-toastify/dist/ReactToastify.css'
 
 export const App = () => {
   return (

@@ -9,6 +9,8 @@ import { BaseLayout } from 'shared/layouts'
 import { PeopleSevices } from 'shared/services'
 import { IVFormErros, VForm, useVForm, VTextfield } from 'shared/forms'
 import { AutocompleteCities } from 'pages/cities'
+import { useAppThemeContext } from 'shared/contexts/theme-context'
+import { toast, ToastContainer } from 'react-toastify'
 
 interface IFromData {
   email: string
@@ -28,6 +30,7 @@ const PeapleDetails: FC = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [person, setPerson] = useState('')
   const { formRef, save, saveAndReturn, isSaveAndReturn } = useVForm()
+  const { themeName } = useAppThemeContext()
 
   useEffect(() => {
     if (id !== 'new') {
@@ -63,10 +66,8 @@ const PeapleDetails: FC = () => {
               return
             } else {
               if (isSaveAndReturn()) {
-                alert('Salvo com sucesso!')
                 navigate(`/people`)
               } else {
-                alert('Salvo com sucesso!')
                 navigate(`/people/details/${response}`)
               }
             }
@@ -79,8 +80,18 @@ const PeapleDetails: FC = () => {
               return
             } else {
               if (isSaveAndReturn()) {
-                alert('Salvo com sucesso!')
                 navigate(`/people`)
+              } else {
+                toast.success('Salvo com sucesso!', {
+                  position: 'top-right',
+                  autoClose: 1000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: themeName
+                })
               }
             }
           })
@@ -104,8 +115,7 @@ const PeapleDetails: FC = () => {
           alert(response.message)
           return
         } else {
-          alert('Excluído com sucesso!')
-          navigate('/people')
+          navigate('/')
         }
       })
     }
@@ -165,6 +175,7 @@ const PeapleDetails: FC = () => {
           </Grid>
         </Box>
       </VForm>
+      <ToastContainer />
     </BaseLayout>
   )
 }
