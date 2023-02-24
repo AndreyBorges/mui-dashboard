@@ -10,7 +10,8 @@ import {
   useMediaQuery
 } from '@mui/material'
 import { FC } from 'react'
-import { IDetailToolsProps } from '../'
+import { IDetailToolsProps } from '..'
+import { t } from 'lang'
 
 const DetailTools: FC<IDetailToolsProps> = ({
   textNew = 'Novo',
@@ -35,6 +36,10 @@ const DetailTools: FC<IDetailToolsProps> = ({
   const theme = useTheme()
   const smDown = useMediaQuery(theme.breakpoints.down('sm'))
   const mdDown = useMediaQuery(theme.breakpoints.down('md'))
+  const save = t('detailTools.save')
+  const saveAndReturn = t('detailTools.saveAndReturn')
+  const deleteB = t('detailTools.delete')
+  const returnB = t('detailTools.back')
 
   return (
     <Box
@@ -61,7 +66,7 @@ const DetailTools: FC<IDetailToolsProps> = ({
             textOverflow='ellipsis'
             overflow='hidden'
           >
-            Salvar
+            {save}
           </Typography>
         </Button>
       )}
@@ -81,7 +86,7 @@ const DetailTools: FC<IDetailToolsProps> = ({
             textOverflow='ellipsis'
             overflow='hidden'
           >
-            Salvar e voltar
+            {saveAndReturn}
           </Typography>
         </Button>
       )}
@@ -101,7 +106,7 @@ const DetailTools: FC<IDetailToolsProps> = ({
             textOverflow='ellipsis'
             overflow='hidden'
           >
-            Apagar
+            {deleteB}
           </Typography>
         </Button>
       )}
@@ -127,12 +132,7 @@ const DetailTools: FC<IDetailToolsProps> = ({
       )}
       {showNewButtonLoading && !smDown && <Skeleton width={112} height={60} />}
       {showReturnButton &&
-        (
-          showNewButton ||
-          showSaveButton ||
-          showSaveAndReturnButton ||
-          showDeleteButton
-        ) && (
+        (showNewButton || showSaveButton || showSaveAndReturnButton || showDeleteButton) && (
           <Divider variant='middle' orientation='vertical' />
         )}
 
@@ -150,7 +150,7 @@ const DetailTools: FC<IDetailToolsProps> = ({
             textOverflow='ellipsis'
             overflow='hidden'
           >
-            Voltar
+            {returnB}
           </Typography>
         </Button>
       )}

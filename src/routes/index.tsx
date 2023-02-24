@@ -1,30 +1,34 @@
 import { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useDrawerContext } from 'shared'
+import { t } from 'lang'
 import { Dashboard, CitiesListing, PeopleListing, PeapleDetails, CitiesDetails } from '../pages'
 
 export const AppRoutes = () => {
   const { setDrawerOptions } = useDrawerContext()
+  const home = t('sidebar.home')
+  const people = t('sidebar.people')
+  const cities = t('sidebar.cities')
 
   useEffect(() => {
     setDrawerOptions([
       {
         icon: 'home',
         path: '/home',
-        label: 'Pagina Inicial'
+        label: home
       },
       {
         icon: 'people',
         path: '/people',
-        label: 'Pessoas'
+        label: people
       },
       {
         icon: 'location_city',
         path: '/cities',
-        label: 'Cidades'
+        label: cities
       }
     ])
-  }, [])
+  }, [home, people, cities])
 
   return (
     <Routes>

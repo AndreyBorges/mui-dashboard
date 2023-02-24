@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "title": "Registration",
+    "description": "Customer and city registration application",
+    "keywords": "Custom management system!"
+  },
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "button": "Login"
+  },
+  "toast": {
+    "reallyDelete": "Do you really want to delete?",
+    "saveSuccess": "Successfully saved!",
+    "cityExclSuccess": "Successfully deleted city!",
+    "peopleExclSuccess": "Person successfully deleted!"
+  },
+  "sidebar": {
+    "home": "Home Page",
+    "people": "People",
+    "cities": "Cities",
+    "language": "Change (PT-BR)",
+    "light": "Light theme",
+    "dark": "Dark Theme",
+    "logout": "Logout"
+  },
+  "detailTools": {
+    "search": "Search...",
+    "save": "Save",
+    "saveAndReturn": "Save and Return",
+    "delete": "Delete",
+    "new": "New",
+    "newPeople": "New Person",
+    "newCity": "New City",
+    "back": "Back"
+  },
+  "dashboard": {
+    "title": "Home Page",
+    "totPeople": "Total People",
+    "totCities": "Total Cities",
+    "loading": "Loading..."
+  },
+  "people": {
+    "title": "People List",
+    "actions": "Actions",
+    "completedName": "Full Name",
+    "email": "Email",
+    "details": {
+      "dataUser": "User Data",
+      "completedName": "Full Name",
+      "email": "Email",
+      "cities": "Cities",
+      "loading": "Loading...",
+      "noOptions": "No options"
+    }
+  },
+  "cities": {
+    "title": "Cities List",
+    "actions": "Actions",
+    "cities": "Cities",
+    "details": {
+      "dataCity": "City Data",
+      "nameCity": "City Name"
+    }
+  }
+}

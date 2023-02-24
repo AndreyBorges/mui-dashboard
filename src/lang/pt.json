@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "title": "Cadastro",
+    "description": "Aplicativo de cadastro de clientes e cidades",
+    "keywords": "sistema de gestão personalizado!"
+  },
+  "login": {
+    "title": "Faça o login",
+    "email": "Email",
+    "password": "Senha",
+    "button": "Entrar"
+  },
+  "toast": {
+    "reallyDelete": "Deseja realmente excluir?",
+    "saveSuccess": "Salvo com sucesso!",
+    "cityExclSuccess": "Cidade excluida com sucesso!",
+    "peopleExclSuccess": "Pessoa excluida com sucesso!"
+  },
+  "sidebar": {
+    "home": "Pagina Inicial",
+    "people": "Pessoas",
+    "cities": "Cidades",
+    "language": "Alterar (EN)",
+    "light": "Tema Claro",
+    "dark": "Tema Escuro",
+    "logout": "Sair"
+  },
+  "detailTools": {
+    "search": "Pesquisar...",
+    "save": "Salvar",
+    "saveAndReturn": "Salvar e Voltar",
+    "delete": "Apagar",
+    "new": "Nova",
+    "newPeople": "Nova Pessoa",
+    "newCity": "Nova Cidade",
+    "back": "Voltar"
+  },
+  "dashboard": {
+    "title": "Pagina Inicial",
+    "totPeople": "Total de Pessoas",
+    "totCities": "Total de Cidades",
+    "loading": "Carregando..."
+  },
+  "people": {
+    "title": "Lista de Pessoas",
+    "actions": "Ações",
+    "completedName": "Nome Completo",
+    "email": "Email",
+    "details": {
+      "dataUser": "Dados do(a) usuario(a)",
+      "completedName": "Nome Completo",
+      "email": "Email",
+      "cities": "Cidades",
+      "loading": "Carregando...",
+      "noOptions": "Sem opções"
+    }
+  },
+  "cities": {
+    "title": "Lista de Cidades",
+    "actions": "Ações",
+    "cities": "Cidades",
+    "details": {
+      "dataCity": "Dados da Cidade",
+      "nameCity": "Nome da Cidade"
+    }
+  }
+}

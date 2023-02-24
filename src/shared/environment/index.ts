@@ -1,12 +1,12 @@
+import { t } from "lang"
+
+
+
 export const Environment = {
   /**
    * Define a quantidade de linhas a ser carregada por padrão nas listagens
    */
   LINES_LIMITS: 5,
-  /**
-   * Define o texto a ser exibido no campo de pesquisa
-   */
-  SEARCH_INPUT: 'Pesquisar...',
   /**
    * Define o texto a ser exibido quando não houver registros
    */

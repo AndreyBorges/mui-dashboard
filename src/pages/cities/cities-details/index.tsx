@@ -10,6 +10,7 @@ import { CitiesSevices } from 'shared/services'
 import { IVFormErros, VForm, useVForm, VTextfield } from 'shared/forms'
 import { useAppThemeContext } from 'shared/contexts/theme-context'
 import { toast, ToastContainer } from 'react-toastify'
+import { t } from 'lang'
 
 interface IFromData {
   name: string
@@ -26,6 +27,11 @@ const CitiesDetails: FC = () => {
   const [city, setCity] = useState('')
   const { formRef, save, saveAndReturn, isSaveAndReturn } = useVForm()
   const { themeName } = useAppThemeContext()
+  const title = t('detailTools.newCity')
+  const dataCity = t('cities.details.dataCity')
+  const nameCity = t('cities.details.nameCity')
+  const toastSuccess = t('toast.saveSuccess')
+  const reallyDelete = t('toast.reallyDelete')
 
   useEffect(() => {
     if (id !== 'new') {
@@ -75,7 +81,7 @@ const CitiesDetails: FC = () => {
               if (isSaveAndReturn()) {
                 navigate(`/cities`)
               } else {
-                toast.success('Salvo com sucesso!', {
+                toast.success(toastSuccess, {
                   position: 'top-right',
                   autoClose: 1000,
                   hideProgressBar: false,
@@ -102,7 +108,7 @@ const CitiesDetails: FC = () => {
   }
 
   const handleDelete = (id: number) => {
-    if (window.confirm('Deseja realmente excluir?')) {
+    if (window.confirm(reallyDelete)) {
       CitiesSevices.deleteById(id).then(response => {
         if (response instanceof Error) {
           alert(response.message)
@@ -116,7 +122,7 @@ const CitiesDetails: FC = () => {
 
   return (
     <BaseLayout
-      title={id === 'new' ? 'Nova Cidade' : city}
+      title={id === 'new' ? title : city}
       listingTools={
         <DetailTools
           textNew='Nova Cidade'
@@ -140,12 +146,12 @@ const CitiesDetails: FC = () => {
               </Grid>
             )}
             <Grid item>
-              <Typography variant='h6'>Dados da Cidade</Typography>
+              <Typography variant='h6'>{dataCity}</Typography>
             </Grid>
             <Grid container item direction='row' spacing={2}>
               <Grid item xs={12} md={6} lg={4} xl={2}>
                 <VTextfield
-                  label='Nome da Cidade'
+                  label={nameCity}
                   name='name'
                   fullWidth
                   onChange={e => setCity(e.target.value)}

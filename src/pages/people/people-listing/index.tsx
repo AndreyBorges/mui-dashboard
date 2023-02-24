@@ -24,6 +24,7 @@ import {
 import { Environment } from 'shared/environment'
 import { useAppThemeContext } from 'shared/contexts/theme-context'
 import { toast, ToastContainer } from 'react-toastify'
+import { t } from 'lang'
 
 const PeopleListing: FC = () => {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
@@ -35,6 +36,14 @@ const PeopleListing: FC = () => {
   const [rows, setRows] = useState<IPeople[]>([])
   const [totalCount, setTotalCount] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const title = t('people.title')
+  const actions = t('people.actions')
+  const completedName = t('people.completedName')
+  const email = t('people.email')
+  const newP = t('detailTools.new')
+  const newPeople = t('detailTools.newPeople')
+  const reallyDelete = t('toast.reallyDelete')
+  const peopleExclSuccess = t('toast.peopleExclSuccess')
 
   const search = useMemo(() => {
     return searchParams.get('search') || ''
@@ -63,7 +72,7 @@ const PeopleListing: FC = () => {
   }, [search, page])
 
   const handleDelete = (id: number) => {
-    if (window.confirm('Deseja realmente excluir?')) {
+    if (window.confirm(reallyDelete)) {
       PeopleSevices.deleteById(id).then(response => {
         if (response instanceof Error) {
           alert(response.message)
@@ -71,7 +80,7 @@ const PeopleListing: FC = () => {
         } else {
           setRows(rows.filter(row => row.id !== id))
           setTotalCount(totalCount - 1)
-          toast.success('Usuario excluido com sucesso!', {
+          toast.success(peopleExclSuccess, {
             position: 'top-right',
             autoClose: 1000,
             hideProgressBar: false,
@@ -88,11 +97,11 @@ const PeopleListing: FC = () => {
 
   return (
     <BaseLayout
-      title='Listagem de Pessoas'
+      title={title}
       listingTools={
         <ListingTools
           showSearchInput
-          newButtonText={smDown ? 'Nova' : 'Nova Pessoa'}
+          newButtonText={smDown ? newP : newPeople}
           searchText={search}
           clickingOnNew={() => navigate('/people/details/new')}
           changeInSearchText={text =>
@@ -112,9 +121,9 @@ const PeopleListing: FC = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell width={100}>Ações</TableCell>
-              <TableCell>Nome Completo</TableCell>
-              <TableCell>Email</TableCell>
+              <TableCell width={100}>{actions}</TableCell>
+              <TableCell>{completedName}</TableCell>
+              <TableCell>{email}</TableCell>
             </TableRow>
           </TableHead>
 

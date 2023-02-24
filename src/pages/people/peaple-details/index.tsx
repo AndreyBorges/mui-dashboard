@@ -1,4 +1,4 @@
-import { Box, Grid, LinearProgress, Paper, Typography } from '@mui/material'
+import { Box, Grid, LinearProgress, Paper, Typography, Theme, useMediaQuery } from '@mui/material'
 import * as yup from 'yup'
 
 import { FC, useEffect, useState } from 'react'
@@ -11,6 +11,7 @@ import { IVFormErros, VForm, useVForm, VTextfield } from 'shared/forms'
 import { AutocompleteCities } from 'pages/cities'
 import { useAppThemeContext } from 'shared/contexts/theme-context'
 import { toast, ToastContainer } from 'react-toastify'
+import { t } from 'lang'
 
 interface IFromData {
   email: string
@@ -31,6 +32,12 @@ const PeapleDetails: FC = () => {
   const [person, setPerson] = useState('')
   const { formRef, save, saveAndReturn, isSaveAndReturn } = useVForm()
   const { themeName } = useAppThemeContext()
+  const newPeople = t('detailTools.newPeople')
+  const dataUser = t('people.details.dataUser')
+  const completedName = t('people.details.completedName')
+  const email = t('people.details.email')
+  const reallyDelete = t('toast.reallyDelete')
+  const toastSuccess = t('toast.saveSuccess')
 
   useEffect(() => {
     if (id !== 'new') {
@@ -82,7 +89,7 @@ const PeapleDetails: FC = () => {
               if (isSaveAndReturn()) {
                 navigate(`/people`)
               } else {
-                toast.success('Salvo com sucesso!', {
+                toast.success(toastSuccess, {
                   position: 'top-right',
                   autoClose: 1000,
                   hideProgressBar: false,
@@ -109,7 +116,7 @@ const PeapleDetails: FC = () => {
   }
 
   const handleDelete = (id: number) => {
-    if (window.confirm('Deseja realmente excluir?')) {
+    if (window.confirm(reallyDelete)) {
       PeopleSevices.deleteById(id).then(response => {
         if (response instanceof Error) {
           alert(response.message)
@@ -123,10 +130,10 @@ const PeapleDetails: FC = () => {
 
   return (
     <BaseLayout
-      title={id === 'new' ? 'Nova Pessoa' : person}
+      title={id === 'new' ? newPeople : person}
       listingTools={
         <DetailTools
-          textNew='Nova Pessoa'
+          textNew={newPeople}
           showSaveAndReturnButton
           showNewButton={id !== 'new'}
           showDeleteButton={id !== 'new'}
@@ -147,12 +154,12 @@ const PeapleDetails: FC = () => {
               </Grid>
             )}
             <Grid item>
-              <Typography variant='h6'>Dados do(a) Usuario(a)</Typography>
+              <Typography variant='h6'>{dataUser}</Typography>
             </Grid>
             <Grid container item direction='row' spacing={2}>
               <Grid item xs={12} md={6} lg={4} xl={2}>
                 <VTextfield
-                  label='Nome Completo'
+                  label={completedName}
                   name='completedName'
                   fullWidth
                   onChange={e => setPerson(e.target.value)}
@@ -163,7 +170,7 @@ const PeapleDetails: FC = () => {
 
             <Grid container item direction='row' spacing={2}>
               <Grid item xs={12} md={6} lg={4} xl={2}>
-                <VTextfield label='Email' name='email' fullWidth disabled={isLoading} />
+                <VTextfield label={email} name='email' fullWidth disabled={isLoading} />
               </Grid>
             </Grid>
 

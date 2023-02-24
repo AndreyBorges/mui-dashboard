@@ -14,11 +14,16 @@ import { Box } from '@mui/material'
 import { FC } from 'react'
 import { ISidebarProps } from 'shared/components/components-types'
 import { useAppThemeContext, useAuthContext, useDrawerContext } from 'shared/contexts'
+import { t } from 'lang'
 import ListItemLink from './list-item-link'
 
-const Sidebar: FC<ISidebarProps> = ({ children }) => {
+const Sidebar: FC<ISidebarProps> = ({ children, changeLocale, locale }) => {
   const theme = useTheme()
   const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const language = t('sidebar.language')
+  const lightTheme = t('sidebar.light')
+  const darkTheme = t('sidebar.dark')
+  const logoutText = t('sidebar.logout')
 
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext()
 
@@ -27,6 +32,10 @@ const Sidebar: FC<ISidebarProps> = ({ children }) => {
 
   const handleClick = () => {
     toggleTheme()
+  }
+
+  const changeLanguage = () => {
+    changeLocale(locale === 'pt' ? 'en' : 'pt')
   }
 
   return (
@@ -66,19 +75,28 @@ const Sidebar: FC<ISidebarProps> = ({ children }) => {
           </Box>
           <Box>
             <List component='nav'>
+              <ListItemButton onClick={changeLanguage}>
+                <ListItemIcon>
+                  <Icon>language</Icon>
+                </ListItemIcon>
+                <ListItemText primary={language} />
+              </ListItemButton>
+
               <ListItemButton onClick={handleClick}>
                 <ListItemIcon>
                   <Icon>{themeName === 'light' ? 'dark_mode' : 'light_mode'}</Icon>
                 </ListItemIcon>
 
-                <ListItemText primary={themeName === 'light' ? 'Tema escuro' : 'Tema claro'} />
+                <ListItemText primary={themeName === 'light' ? darkTheme : lightTheme} />
               </ListItemButton>
+
+              <Divider />
 
               <ListItemButton onClick={logout}>
                 <ListItemIcon>
                   <Icon>logout</Icon>
                 </ListItemIcon>
-                <ListItemText primary='Sair' />
+                <ListItemText primary={logoutText} />
               </ListItemButton>
             </List>
           </Box>

@@ -24,6 +24,7 @@ import {
 import { Environment } from 'shared/environment'
 import { toast, ToastContainer } from 'react-toastify'
 import { useAppThemeContext } from 'shared/contexts/theme-context'
+import { t } from 'lang'
 
 const CitiesListing: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -35,6 +36,14 @@ const CitiesListing: FC = () => {
   const [totalCount, setTotalCount] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const { themeName } = useAppThemeContext()
+  const title = t('cities.title')
+  const actions = t('cities.actions')
+  const cities = t('cities.cities')
+  const newB = t('detailTools.new')
+  const newCity = t('detailTools.newCity')
+  const reallyDelete = t('toast.reallyDelete')
+  const cityExclSuccess = t('toast.cityExclSuccess')
+
 
   const search = useMemo(() => {
     return searchParams.get('search') || ''
@@ -63,7 +72,7 @@ const CitiesListing: FC = () => {
   }, [search, page])
 
   const handleDelete = (id: number) => {
-    if (window.confirm('Deseja realmente excluir?')) {
+    if (window.confirm(reallyDelete)) {
       CitiesSevices.deleteById(id).then(response => {
         if (response instanceof Error) {
           alert(response.message)
@@ -71,7 +80,7 @@ const CitiesListing: FC = () => {
         } else {
           setRows(rows.filter(row => row.id !== id))
           setTotalCount(totalCount - 1)
-          toast.success('Cidade excluida com sucesso!', {
+          toast.success(cityExclSuccess, {
             position: 'top-right',
             autoClose: 1000,
             hideProgressBar: false,
@@ -88,11 +97,11 @@ const CitiesListing: FC = () => {
 
   return (
     <BaseLayout
-      title='Listagem de Cidades'
+      title={title}
       listingTools={
         <ListingTools
           showSearchInput
-          newButtonText={smDown ? 'Nova' : 'Nova Cidade'}
+          newButtonText={smDown ? newB : newCity}
           searchText={search}
           clickingOnNew={() => navigate('/cities/details/new')}
           changeInSearchText={text =>
@@ -112,8 +121,8 @@ const CitiesListing: FC = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell width={100}>Ações</TableCell>
-              <TableCell>Nome</TableCell>
+              <TableCell width={100}>{actions}</TableCell>
+              <TableCell>{cities}</TableCell>
             </TableRow>
           </TableHead>
 

@@ -13,6 +13,7 @@ import { useAuthContext } from '../../contexts'
 import { LoginProps } from '../components-types'
 
 import * as yup from 'yup'
+import { t } from 'lang'
 
 const loginSchema = yup.object().shape({
   email: yup.string().email().required(),
@@ -28,6 +29,11 @@ const Login: FC<LoginProps> = ({ children }) => {
 
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
+
+  const title = t('login.title')
+  const emailLabel = t('login.email')
+  const passwordLabel = t('login.password')
+  const loginBtn = t('login.button')
 
   const handleSubmit = () => {
     setIsLoading(true)
@@ -62,7 +68,7 @@ const Login: FC<LoginProps> = ({ children }) => {
         <CardContent>
           <Box display='flex' flexDirection='column' gap={2} width={250}>
             <Typography variant='h6' align='center'>
-              Faça o login
+              {title}
             </Typography>
 
             <TextField
@@ -70,7 +76,7 @@ const Login: FC<LoginProps> = ({ children }) => {
               value={email}
               error={!!emailError}
               helperText={emailError}
-              label='Email'
+              label={emailLabel}
               disabled={isLoading}
               onChange={({ target }) => {
                 setEmail(target.value)
@@ -84,7 +90,7 @@ const Login: FC<LoginProps> = ({ children }) => {
               value={password}
               error={!!passwordError}
               helperText={passwordError}
-              label='Password'
+              label={passwordLabel}
               disabled={isLoading}
               type='password'
               onChange={({ target }) => {
@@ -108,7 +114,7 @@ const Login: FC<LoginProps> = ({ children }) => {
               {isLoading ? (
                 <CircularProgress variant='indeterminate' color='inherit' size={20} />
               ) : (
-                'Entrar'
+                loginBtn
               )}
             </Button>
           </Box>

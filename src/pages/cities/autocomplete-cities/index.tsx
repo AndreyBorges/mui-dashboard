@@ -3,6 +3,7 @@ import { FC, useEffect, useMemo, useState } from 'react'
 import { CitiesSevices } from 'shared/services'
 import { useDebounce } from 'shared/hooks'
 import { useField } from '@unform/core'
+import { t } from 'lang'
 
 interface IAutocompleteOption {
   id: number
@@ -20,6 +21,9 @@ const AutocompleteCities: FC<IAutocompleteCitiesProps> = ({ isExternalLoading = 
   const [isLoading, setIsLoading] = useState(false)
   const [search, setSearch] = useState('')
   const { debounce } = useDebounce()
+  const cities = t('people.details.cities')
+  const loading = t('people.details.loading')
+  const noOptions = t('people.details.noOptions')
 
   const handleAutocompleteChange = (
     _: React.SyntheticEvent<Element, Event>,
@@ -72,8 +76,8 @@ const AutocompleteCities: FC<IAutocompleteCitiesProps> = ({ isExternalLoading = 
     <Autocomplete
       openText='Abrir'
       closeText='Fechar'
-      noOptionsText='Sem opções'
-      loadingText='Carregando...'
+      noOptionsText={noOptions}
+      loadingText={loading}
       disablePortal
       value={autoCompletedSelectedOption}
       {...{ options }}
@@ -83,7 +87,7 @@ const AutocompleteCities: FC<IAutocompleteCitiesProps> = ({ isExternalLoading = 
       popupIcon={isLoading || isExternalLoading ? <CircularProgress size={28} /> : undefined}
       onChange={handleAutocompleteChange}
       renderInput={params => (
-        <TextField {...params} error={!!error} helperText={error} label='Cidade' />
+        <TextField {...params} error={!!error} helperText={error} label={cities} />
       )}
     />
   )

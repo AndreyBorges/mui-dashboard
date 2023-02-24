@@ -2,6 +2,8 @@ import { ReactNode } from 'react'
 
 export interface ISidebarProps {
   children: ReactNode
+  locale: string
+  changeLocale: React.Dispatch<React.SetStateAction<'pt' | 'en'>>
 }
 
 export interface IListItemLinkProps {

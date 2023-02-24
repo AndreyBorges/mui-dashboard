@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { BaseLayout } from 'shared/layouts'
 import { CitiesSevices, PeopleSevices } from 'shared/services'
+import { t } from 'lang'
 
 const Dashboard: FC = () => {
   const [isLoadingPeople, setIsLoadingPeople] = useState(false)
@@ -11,7 +12,10 @@ const Dashboard: FC = () => {
   const [totalCountPeople, setTotalCountPeople] = useState(0)
   const [totalCountCities, setTotalCountCities] = useState(0)
   const navigate = useNavigate()
-
+  const title = t('dashboard.title')
+  const totPeople = t('dashboard.totPeople')
+  const totCities = t('dashboard.totCities')
+  const loading = t('dashboard.loading')
 
   useEffect(() => {
     setIsLoadingCities(true)
@@ -19,7 +23,6 @@ const Dashboard: FC = () => {
 
     PeopleSevices.getAll(1).then(response => {
       setIsLoadingPeople(false)
-
 
       if (response instanceof Error) {
         alert(response.message)
@@ -41,17 +44,16 @@ const Dashboard: FC = () => {
     })
   }, [])
 
-  const goToPeople = () => { 
+  const goToPeople = () => {
     navigate('/people')
   }
 
-  const goToCities = () => { 
+  const goToCities = () => {
     navigate('/cities')
   }
   return (
-    <BaseLayout title='Página Inicial'>
+    <BaseLayout title={title}>
       <Divider sx={{ mb: 6 }} />
-
       <Box width='100%' display='flex'>
         <Grid container>
           <Grid item container spacing={2}>
@@ -59,13 +61,12 @@ const Dashboard: FC = () => {
               <Card onClick={goToPeople} sx={{ cursor: 'pointer' }}>
                 <CardContent>
                   <Typography variant='h5' align='center'>
-                    Total de pessoas
+                    {totPeople}
                   </Typography>
                   <Box padding={6} display='flex' justifyContent='center' alignItems='center'>
                     <Typography variant='h1'>
-                      {' '}
                       {isLoadingPeople ? (
-                        <Typography variant='h6'>Carregando...</Typography>
+                        <Typography variant='h6'>{loading}</Typography>
                       ) : (
                         <Typography variant='h1'>{totalCountPeople}</Typography>
                       )}
@@ -78,11 +79,11 @@ const Dashboard: FC = () => {
               <Card onClick={goToCities} sx={{ cursor: 'pointer' }}>
                 <CardContent>
                   <Typography variant='h5' align='center'>
-                    Total de cidades
+                    {totCities}
                   </Typography>
                   <Box padding={6} display='flex' justifyContent='center' alignItems='center'>
                     {isLoadingCities ? (
-                      <Typography variant='h6'>Carregando...</Typography>
+                      <Typography variant='h6'>{loading}</Typography>
                     ) : (
                       <Typography variant='h1'>{totalCountCities}</Typography>
                     )}
