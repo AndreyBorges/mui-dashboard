@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { BaseLayout } from 'shared/layouts'
 import { CitiesSevices, PeopleSevices } from 'shared/services'
-import { t } from 'lang'
+import { T } from 'lang'
 
 const Dashboard: FC = () => {
   const [isLoadingPeople, setIsLoadingPeople] = useState(false)
@@ -12,10 +12,10 @@ const Dashboard: FC = () => {
   const [totalCountPeople, setTotalCountPeople] = useState(0)
   const [totalCountCities, setTotalCountCities] = useState(0)
   const navigate = useNavigate()
-  const title = t('dashboard.title')
-  const totPeople = t('dashboard.totPeople')
-  const totCities = t('dashboard.totCities')
-  const loading = t('dashboard.loading')
+  const title = T('dashboard.title')
+  const totPeople = T('dashboard.totPeople')
+  const totCities = T('dashboard.totCities')
+  const loading = T('dashboard.loading')
 
   useEffect(() => {
     setIsLoadingCities(true)

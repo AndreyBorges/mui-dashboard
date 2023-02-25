@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Box, Button, Icon, Paper, TextField, useTheme } from '@mui/material'
 
 import { IListingToolsProps } from '..'
-import { t } from 'lang'
+import { T } from 'lang'
 
 const ListingTools: FC<IListingToolsProps> = ({
   searchText = '',
@@ -13,7 +13,7 @@ const ListingTools: FC<IListingToolsProps> = ({
   clickingOnNew
 }) => {
   const theme = useTheme()
-  const searchInput = t('detailTools.search')
+  const searchInput = T('detailTools.search')
   return (
     <Box
       component={Paper}

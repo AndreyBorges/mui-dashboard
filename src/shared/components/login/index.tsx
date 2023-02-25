@@ -13,7 +13,7 @@ import { useAuthContext } from '../../contexts'
 import { LoginProps } from '../components-types'
 
 import * as yup from 'yup'
-import { t } from 'lang'
+import { T } from 'lang'
 
 const loginSchema = yup.object().shape({
   email: yup.string().email().required(),
@@ -30,10 +30,10 @@ const Login: FC<LoginProps> = ({ children }) => {
   const [emailError, setEmailError] = useState('')
   const [passwordError, setPasswordError] = useState('')
 
-  const title = t('login.title')
-  const emailLabel = t('login.email')
-  const passwordLabel = t('login.password')
-  const loginBtn = t('login.button')
+  const title = T('login.title')
+  const emailLabel = T('login.email')
+  const passwordLabel = T('login.password')
+  const loginBtn = T('login.button')
 
   const handleSubmit = () => {
     setIsLoading(true)

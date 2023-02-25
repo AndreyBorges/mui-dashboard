@@ -14,17 +14,17 @@ import { Box } from '@mui/material'
 import { FC } from 'react'
 import { ISidebarProps } from 'shared/components/components-types'
 import { useAppThemeContext, useAuthContext, useDrawerContext, useLocaleContext } from 'shared/contexts'
-import { t } from 'lang'
+import { T } from 'lang'
 import ListItemLink from './list-item-link'
 
 const Sidebar: FC<ISidebarProps> = ({ children }) => {
   const theme = useTheme()
   const smDown = useMediaQuery(theme.breakpoints.down('sm'))
   const { locale, setLocale } = useLocaleContext()
-  const language = t('sidebar.language')
-  const lightTheme = t('sidebar.light')
-  const darkTheme = t('sidebar.dark')
-  const logoutText = t('sidebar.logout')
+  const language = T('sidebar.language')
+  const lightTheme = T('sidebar.light')
+  const darkTheme = T('sidebar.dark')
+  const logoutText = T('sidebar.logout')
 
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext()
 

@@ -24,7 +24,7 @@ import {
 import { Environment } from 'shared/environment'
 import { useAppThemeContext } from 'shared/contexts/theme-context'
 import { toast, ToastContainer } from 'react-toastify'
-import { t } from 'lang'
+import { T } from 'lang'
 
 const PeopleListing: FC = () => {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))
@@ -36,14 +36,14 @@ const PeopleListing: FC = () => {
   const [rows, setRows] = useState<IPeople[]>([])
   const [totalCount, setTotalCount] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
-  const title = t('people.title')
-  const actions = t('people.actions')
-  const completedName = t('people.completedName')
-  const email = t('people.email')
-  const newP = t('detailTools.new')
-  const newPeople = t('detailTools.newPeople')
-  const reallyDelete = t('toast.reallyDelete')
-  const peopleExclSuccess = t('toast.peopleExclSuccess')
+  const title = T('people.title')
+  const actions = T('people.actions')
+  const completedName = T('people.completedName')
+  const email = T('people.email')
+  const newP = T('detailTools.new')
+  const newPeople = T('detailTools.newPeople')
+  const reallyDelete = T('toast.reallyDelete')
+  const peopleExclSuccess = T('toast.peopleExclSuccess')
 
   const search = useMemo(() => {
     return searchParams.get('search') || ''

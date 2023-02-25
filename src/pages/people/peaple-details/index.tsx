@@ -11,7 +11,7 @@ import { IVFormErros, VForm, useVForm, VTextfield } from 'shared/forms'
 import { AutocompleteCities } from 'pages/cities'
 import { useAppThemeContext } from 'shared/contexts/theme-context'
 import { toast, ToastContainer } from 'react-toastify'
-import { t } from 'lang'
+import { T } from 'lang'
 
 interface IFromData {
   email: string
@@ -32,12 +32,12 @@ const PeapleDetails: FC = () => {
   const [person, setPerson] = useState('')
   const { formRef, save, saveAndReturn, isSaveAndReturn } = useVForm()
   const { themeName } = useAppThemeContext()
-  const newPeople = t('detailTools.newPeople')
-  const dataUser = t('people.details.dataUser')
-  const completedName = t('people.details.completedName')
-  const email = t('people.details.email')
-  const reallyDelete = t('toast.reallyDelete')
-  const toastSuccess = t('toast.saveSuccess')
+  const newPeople = T('detailTools.newPeople')
+  const dataUser = T('people.details.dataUser')
+  const completedName = T('people.details.completedName')
+  const email = T('people.details.email')
+  const reallyDelete = T('toast.reallyDelete')
+  const toastSuccess = T('toast.saveSuccess')
 
   useEffect(() => {
     if (id !== 'new') {

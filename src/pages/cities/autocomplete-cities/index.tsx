@@ -3,7 +3,7 @@ import { FC, useEffect, useMemo, useState } from 'react'
 import { CitiesSevices } from 'shared/services'
 import { useDebounce } from 'shared/hooks'
 import { useField } from '@unform/core'
-import { t } from 'lang'
+import { T } from 'lang'
 
 interface IAutocompleteOption {
   id: number
@@ -21,9 +21,9 @@ const AutocompleteCities: FC<IAutocompleteCitiesProps> = ({ isExternalLoading = 
   const [isLoading, setIsLoading] = useState(false)
   const [search, setSearch] = useState('')
   const { debounce } = useDebounce()
-  const cities = t('people.details.cities')
-  const loading = t('people.details.loading')
-  const noOptions = t('people.details.noOptions')
+  const cities = T('people.details.cities')
+  const loading = T('people.details.loading')
+  const noOptions = T('people.details.noOptions')
 
   const handleAutocompleteChange = (
     _: React.SyntheticEvent<Element, Event>,

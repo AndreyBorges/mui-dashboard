@@ -11,7 +11,7 @@ import {
 } from '@mui/material'
 import { FC } from 'react'
 import { IDetailToolsProps } from '..'
-import { t } from 'lang'
+import { T } from 'lang'
 
 const DetailTools: FC<IDetailToolsProps> = ({
   textNew = 'Novo',
@@ -36,10 +36,10 @@ const DetailTools: FC<IDetailToolsProps> = ({
   const theme = useTheme()
   const smDown = useMediaQuery(theme.breakpoints.down('sm'))
   const mdDown = useMediaQuery(theme.breakpoints.down('md'))
-  const save = t('detailTools.save')
-  const saveAndReturn = t('detailTools.saveAndReturn')
-  const deleteB = t('detailTools.delete')
-  const returnB = t('detailTools.back')
+  const save = T('detailTools.save')
+  const saveAndReturn = T('detailTools.saveAndReturn')
+  const deleteB = T('detailTools.delete')
+  const returnB = T('detailTools.back')
 
   return (
     <Box

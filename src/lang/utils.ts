@@ -18,7 +18,7 @@ export const flattenMessages = (nestedMessages: any, prefix = '') => {
   }, {})
 }
 
-export const t = (id: string) => {
+export const T = (id: string) => {
   const intl = useIntl()
   return intl.formatMessage({ id })
 }

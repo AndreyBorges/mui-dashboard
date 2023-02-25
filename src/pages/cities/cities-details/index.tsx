@@ -10,7 +10,7 @@ import { CitiesSevices } from 'shared/services'
 import { IVFormErros, VForm, useVForm, VTextfield } from 'shared/forms'
 import { useAppThemeContext } from 'shared/contexts/theme-context'
 import { toast, ToastContainer } from 'react-toastify'
-import { t } from 'lang'
+import { T } from 'lang'
 
 interface IFromData {
   name: string
@@ -27,12 +27,12 @@ const CitiesDetails: FC = () => {
   const [city, setCity] = useState('')
   const { formRef, save, saveAndReturn, isSaveAndReturn } = useVForm()
   const { themeName } = useAppThemeContext()
-  const title = t('detailTools.newCity')
-  const dataCity = t('cities.details.dataCity')
-  const nameCity = t('cities.details.nameCity')
-  const newCity = t('detailTools.newCity')
-  const toastSuccess = t('toast.saveSuccess')
-  const reallyDelete = t('toast.reallyDelete')
+  const title = T('detailTools.newCity')
+  const dataCity = T('cities.details.dataCity')
+  const nameCity = T('cities.details.nameCity')
+  const newCity = T('detailTools.newCity')
+  const toastSuccess = T('toast.saveSuccess')
+  const reallyDelete = T('toast.reallyDelete')
 
   useEffect(() => {
     if (id !== 'new') {

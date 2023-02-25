@@ -1,4 +1,4 @@
-import { t } from "lang"
+import { T } from "lang"
 
 
 

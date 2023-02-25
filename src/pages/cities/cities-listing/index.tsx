@@ -24,7 +24,7 @@ import {
 import { Environment } from 'shared/environment'
 import { toast, ToastContainer } from 'react-toastify'
 import { useAppThemeContext } from 'shared/contexts/theme-context'
-import { t } from 'lang'
+import { T } from 'lang'
 
 const CitiesListing: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -36,13 +36,13 @@ const CitiesListing: FC = () => {
   const [totalCount, setTotalCount] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const { themeName } = useAppThemeContext()
-  const title = t('cities.title')
-  const actions = t('cities.actions')
-  const cities = t('cities.cities')
-  const newB = t('detailTools.new')
-  const newCity = t('detailTools.newCity')
-  const reallyDelete = t('toast.reallyDelete')
-  const cityExclSuccess = t('toast.cityExclSuccess')
+  const title = T('cities.title')
+  const actions = T('cities.actions')
+  const cities = T('cities.cities')
+  const newB = T('detailTools.new')
+  const newCity = T('detailTools.newCity')
+  const reallyDelete = T('toast.reallyDelete')
+  const cityExclSuccess = T('toast.cityExclSuccess')
 
 
   const search = useMemo(() => {
