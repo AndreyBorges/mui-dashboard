@@ -13,13 +13,14 @@ import {
 import { Box } from '@mui/material'
 import { FC } from 'react'
 import { ISidebarProps } from 'shared/components/components-types'
-import { useAppThemeContext, useAuthContext, useDrawerContext } from 'shared/contexts'
+import { useAppThemeContext, useAuthContext, useDrawerContext, useLocaleContext } from 'shared/contexts'
 import { t } from 'lang'
 import ListItemLink from './list-item-link'
 
-const Sidebar: FC<ISidebarProps> = ({ children, changeLocale, locale }) => {
+const Sidebar: FC<ISidebarProps> = ({ children }) => {
   const theme = useTheme()
   const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+  const { locale, setLocale } = useLocaleContext()
   const language = t('sidebar.language')
   const lightTheme = t('sidebar.light')
   const darkTheme = t('sidebar.dark')
@@ -35,7 +36,7 @@ const Sidebar: FC<ISidebarProps> = ({ children, changeLocale, locale }) => {
   }
 
   const changeLanguage = () => {
-    changeLocale(locale === 'pt' ? 'en' : 'pt')
+    setLocale(locale === 'pt' ? 'en' : 'pt')
   }
 
   return (

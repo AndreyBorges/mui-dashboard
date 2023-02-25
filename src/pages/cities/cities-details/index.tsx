@@ -30,6 +30,7 @@ const CitiesDetails: FC = () => {
   const title = t('detailTools.newCity')
   const dataCity = t('cities.details.dataCity')
   const nameCity = t('cities.details.nameCity')
+  const newCity = t('detailTools.newCity')
   const toastSuccess = t('toast.saveSuccess')
   const reallyDelete = t('toast.reallyDelete')
 
@@ -125,7 +126,7 @@ const CitiesDetails: FC = () => {
       title={id === 'new' ? title : city}
       listingTools={
         <DetailTools
-          textNew='Nova Cidade'
+          textNew={newCity}
           showSaveAndReturnButton
           showNewButton={id !== 'new'}
           showDeleteButton={id !== 'new'}
