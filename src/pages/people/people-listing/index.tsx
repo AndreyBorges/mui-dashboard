@@ -1,10 +1,3 @@
-import { FC, useEffect, useMemo, useState } from 'react'
-import { BaseLayout } from 'shared/layouts'
-import { ListingTools } from 'shared/components'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import { PeopleSevices } from 'shared/services'
-import { useDebounce } from 'shared/hooks'
-import { IPeople } from 'shared/services/api/types'
 import {
   Icon,
   IconButton,
@@ -21,10 +14,17 @@ import {
   Theme,
   useMediaQuery
 } from '@mui/material'
-import { Environment } from 'shared/environment'
-import { useAppThemeContext } from 'shared/contexts/theme-context'
-import { toast, ToastContainer } from 'react-toastify'
 import { T } from 'lang'
+import { FC, useEffect, useMemo, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
+import { ListingTools } from 'shared/components'
+import { useAppThemeContext } from 'shared/contexts/theme-context'
+import { Environment } from 'shared/environment'
+import { useDebounce } from 'shared/hooks'
+import { BaseLayout } from 'shared/layouts'
+import { PeopleSevices } from 'shared/services'
+import { IPeople } from 'shared/services/api/types'
 
 const PeopleListing: FC = () => {
   const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'))

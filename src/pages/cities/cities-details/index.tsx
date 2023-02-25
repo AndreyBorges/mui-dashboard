@@ -4,13 +4,13 @@ import * as yup from 'yup'
 import { FC, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { T } from 'lang'
+import { toast, ToastContainer } from 'react-toastify'
 import { DetailTools } from 'shared/components'
+import { useAppThemeContext } from 'shared/contexts/theme-context'
+import { IVFormErros, useVForm, VForm, VTextfield } from 'shared/forms'
 import { BaseLayout } from 'shared/layouts'
 import { CitiesSevices } from 'shared/services'
-import { IVFormErros, VForm, useVForm, VTextfield } from 'shared/forms'
-import { useAppThemeContext } from 'shared/contexts/theme-context'
-import { toast, ToastContainer } from 'react-toastify'
-import { T } from 'lang'
 
 interface IFromData {
   name: string

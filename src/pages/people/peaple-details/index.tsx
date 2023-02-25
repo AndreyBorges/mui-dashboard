@@ -1,17 +1,17 @@
-import { Box, Grid, LinearProgress, Paper, Typography, Theme, useMediaQuery } from '@mui/material'
+import { Box, Grid, LinearProgress, Paper, Typography } from '@mui/material'
 import * as yup from 'yup'
 
 import { FC, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import { T } from 'lang'
+import { AutocompleteCities } from 'pages/cities'
+import { toast, ToastContainer } from 'react-toastify'
 import { DetailTools } from 'shared/components'
+import { useAppThemeContext } from 'shared/contexts/theme-context'
+import { IVFormErros, useVForm, VForm, VTextfield } from 'shared/forms'
 import { BaseLayout } from 'shared/layouts'
 import { PeopleSevices } from 'shared/services'
-import { IVFormErros, VForm, useVForm, VTextfield } from 'shared/forms'
-import { AutocompleteCities } from 'pages/cities'
-import { useAppThemeContext } from 'shared/contexts/theme-context'
-import { toast, ToastContainer } from 'react-toastify'
-import { T } from 'lang'
 
 interface IFromData {
   email: string

@@ -4,14 +4,12 @@ import {
   Divider,
   Icon,
   Paper,
-  Skeleton,
-  useTheme,
-  Typography,
-  useMediaQuery
+  Skeleton, Typography,
+  useMediaQuery, useTheme
 } from '@mui/material'
+import { T } from 'lang'
 import { FC } from 'react'
 import { IDetailToolsProps } from '..'
-import { T } from 'lang'
 
 const DetailTools: FC<IDetailToolsProps> = ({
   textNew = 'Novo',

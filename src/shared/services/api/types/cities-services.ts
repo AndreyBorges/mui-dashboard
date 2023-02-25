@@ -3,8 +3,7 @@ export interface ICities {
   name: string
 }
 
-
-export  type TCitiesTotCount = {
+export type TCitiesTotCount = {
   data: ICities[]
   totalCount: number
 }

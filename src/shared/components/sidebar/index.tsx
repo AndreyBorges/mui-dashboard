@@ -1,6 +1,5 @@
 import {
-  Avatar,
-  Divider,
+  Avatar, Box, Divider,
   Drawer,
   Icon,
   List,
@@ -10,11 +9,15 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material'
-import { Box } from '@mui/material'
+import { T } from 'lang'
 import { FC } from 'react'
 import { ISidebarProps } from 'shared/components/components-types'
-import { useAppThemeContext, useAuthContext, useDrawerContext, useLocaleContext } from 'shared/contexts'
-import { T } from 'lang'
+import {
+  useAppThemeContext,
+  useAuthContext,
+  useDrawerContext,
+  useLocaleContext
+} from 'shared/contexts'
 import ListItemLink from './list-item-link'
 
 const Sidebar: FC<ISidebarProps> = ({ children }) => {

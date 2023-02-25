@@ -5,8 +5,7 @@ export interface IPeople {
   email: string
 }
 
-
-export  type TPeopleTotCount = {
+export type TPeopleTotCount = {
   data: IPeople[]
   totalCount: number
 }

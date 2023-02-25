@@ -1,12 +1,27 @@
-import { Api } from '../'
 import { Environment } from 'shared/environment'
-import { TCitiesTotCount, ICities } from '../types'
-
-
+import { Api, ICities, TCitiesTotCount } from '..'
 
 const getAll = async (page = 1, filter: string = ''): Promise<TCitiesTotCount | Error> => {
   try {
     const relativeUrl = `/cities?_page=${page}&_limit=${Environment.LINES_LIMITS}&name_like=${filter}`
+    const { data, headers } = await Api.get(relativeUrl)
+
+    if (!data) {
+      return new Error('Erro ao listar os dados')
+    }
+    return {
+      data,
+      totalCount: Number(headers['x-total-count'] || Environment.LINES_LIMITS)
+    }
+  } catch (error) {
+    console.error(error)
+    return new Error((error as { message: string }).message || 'Erro ao buscar os dados')
+  }
+}
+
+const getCompleted = async (page = 1): Promise<TCitiesTotCount | Error> => {
+  try {
+    const relativeUrl = `/cities?_page=${page}`
     const { data, headers } = await Api.get(relativeUrl)
 
     if (!data) {
@@ -70,9 +85,7 @@ const deleteById = async (id: number): Promise<void | Error> => {
     await Api.delete(urlId)
   } catch (error) {
     console.error(error)
-    return new Error(
-      (error as { message: string }).message || 'Erro ao apagar os dados do usuário'
-    )
+    return new Error((error as { message: string }).message || 'Erro ao apagar os dados do usuário')
   }
 }
 
@@ -81,5 +94,6 @@ export const CitiesSevices = {
   getById,
   create,
   updateById,
-  deleteById
+  deleteById,
+  getCompleted
 }

@@ -1,10 +1,3 @@
-import { FC, useEffect, useMemo, useState } from 'react'
-import { BaseLayout } from 'shared/layouts'
-import { ListingTools } from 'shared/components'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import { CitiesSevices } from 'shared/services'
-import { useDebounce } from 'shared/hooks'
-import { ICities } from 'shared/services/api/types'
 import {
   Icon,
   IconButton,
@@ -21,10 +14,17 @@ import {
   Theme,
   useMediaQuery
 } from '@mui/material'
-import { Environment } from 'shared/environment'
-import { toast, ToastContainer } from 'react-toastify'
-import { useAppThemeContext } from 'shared/contexts/theme-context'
 import { T } from 'lang'
+import { FC, useEffect, useMemo, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
+import { ListingTools } from 'shared/components'
+import { useAppThemeContext } from 'shared/contexts/theme-context'
+import { Environment } from 'shared/environment'
+import { useDebounce } from 'shared/hooks'
+import { BaseLayout } from 'shared/layouts'
+import { CitiesSevices } from 'shared/services'
+import { ICities } from 'shared/services/api/types'
 
 const CitiesListing: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -43,7 +43,6 @@ const CitiesListing: FC = () => {
   const newCity = T('detailTools.newCity')
   const reallyDelete = T('toast.reallyDelete')
   const cityExclSuccess = T('toast.cityExclSuccess')
-
 
   const search = useMemo(() => {
     return searchParams.get('search') || ''

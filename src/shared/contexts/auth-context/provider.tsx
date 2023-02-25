@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useMemo, useState } from 'react'
-import { IAuthProviderProps } from '..'
-import { AuthContext } from '.'
 import { AuthService } from 'shared/services/api/auth'
+import { AuthContext } from '.'
+import { IAuthProviderProps } from '..'
 
 const AuthProvider: FC<IAuthProviderProps> = ({ children }) => {
   const LOCAL_STORAGE_KEY__ACCESS_TOKEN = 'APP_ACCESS_TOKEN'

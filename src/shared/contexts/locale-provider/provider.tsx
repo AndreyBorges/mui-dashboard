@@ -8,10 +8,6 @@ const DrawerProvider: FC<ILocaleProvider> = ({ children }) => {
   useEffect(() => {
     document.title = locale === 'en' ? 'Registrations' : 'Cadastros'
   }, [locale])
-  return (
-    <LocaleContext.Provider value={{ locale, setLocale }}>
-      {children}
-    </LocaleContext.Provider>
-  )
+  return <LocaleContext.Provider value={{ locale, setLocale }}>{children}</LocaleContext.Provider>
 }
 export default DrawerProvider

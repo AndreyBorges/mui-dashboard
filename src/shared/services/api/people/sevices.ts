@@ -1,6 +1,5 @@
-import { Api } from '../'
 import { Environment } from 'shared/environment'
-import { TPeopleTotCount, IPeople } from '../types'
+import { Api, IPeople, TPeopleTotCount } from '..'
 
 const getAll = async (page = 1, filter: string = ''): Promise<TPeopleTotCount | Error> => {
   try {

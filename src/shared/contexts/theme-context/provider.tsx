@@ -1,9 +1,8 @@
-import { Box } from '@mui/material'
-import { ThemeProvider } from '@mui/material'
+import { Box, ThemeProvider } from '@mui/material'
 import { FC, useCallback, useMemo, useState } from 'react'
 
 import { IThemeProviderAppProps } from 'shared/contexts'
-import { LightTheme, DarkTheme } from 'shared/themes'
+import { DarkTheme, LightTheme } from 'shared/themes'
 import { ThemeContextApp } from '.'
 
 const ThemeProviderApp: FC<IThemeProviderAppProps> = ({ children }) => {

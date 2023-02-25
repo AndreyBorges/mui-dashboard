@@ -1,7 +1,6 @@
-import { Box } from '@mui/material'
-import { FC, ReactNode } from 'react'
+import { Box, Icon, IconButton, Theme, useMediaQuery, useTheme } from '@mui/material'
 import Typography from '@mui/material/Typography'
-import { Icon, IconButton, Theme, useMediaQuery, useTheme } from '@mui/material'
+import { FC, ReactNode } from 'react'
 import { useDrawerContext } from 'shared/contexts'
 
 interface IBaseLayoutProps {

@@ -1,7 +1,7 @@
-import { ListItemButton, ListItemIcon, Icon, ListItemText } from '@mui/material'
+import { Icon, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import { FC } from 'react'
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom'
-import { IListItemLinkProps } from '../../components-types'
+import { IListItemLinkProps } from 'shared/components/components-types'
 
 const ListItemLink: FC<IListItemLinkProps> = ({ to, icon, label, onClick }) => {
   const navigate = useNavigate()

@@ -4,16 +4,16 @@ import {
   Card,
   CardActions,
   CardContent,
-  Typography,
+  CircularProgress,
   TextField,
-  CircularProgress
+  Typography
 } from '@mui/material'
 import { FC, useState } from 'react'
-import { useAuthContext } from '../../contexts'
-import { LoginProps } from '../components-types'
+import { useAuthContext } from 'shared/contexts'
+import { LoginProps } from '..'
 
-import * as yup from 'yup'
 import { T } from 'lang'
+import * as yup from 'yup'
 
 const loginSchema = yup.object().shape({
   email: yup.string().email().required(),

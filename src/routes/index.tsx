@@ -1,8 +1,8 @@
+import { T } from 'lang'
+import { CitiesDetails, CitiesListing, Dashboard, PeapleDetails, PeopleListing } from 'pages'
 import { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useDrawerContext } from 'shared'
-import { T } from 'lang'
-import { Dashboard, CitiesListing, PeopleListing, PeapleDetails, CitiesDetails } from '../pages'
 
 export const AppRoutes = () => {
   const { setDrawerOptions } = useDrawerContext()

@@ -1,9 +1,9 @@
 import { Autocomplete, CircularProgress, TextField } from '@mui/material'
-import { FC, useEffect, useMemo, useState } from 'react'
-import { CitiesSevices } from 'shared/services'
-import { useDebounce } from 'shared/hooks'
 import { useField } from '@unform/core'
 import { T } from 'lang'
+import { FC, useEffect, useMemo, useState } from 'react'
+import { useDebounce } from 'shared/hooks'
+import { CitiesSevices } from 'shared/services'
 
 interface IAutocompleteOption {
   id: number
@@ -46,7 +46,7 @@ const AutocompleteCities: FC<IAutocompleteCitiesProps> = ({ isExternalLoading = 
     setIsLoading(true)
 
     debounce(() => {
-      CitiesSevices.getAll(1).then(response => {
+      CitiesSevices.getCompleted(1).then(response => {
         setIsLoading(false)
 
         if (response instanceof Error) {

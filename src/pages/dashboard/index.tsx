@@ -2,9 +2,9 @@ import { Box, Card, CardContent, Divider, Grid, Typography } from '@mui/material
 import { FC, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { T } from 'lang'
 import { BaseLayout } from 'shared/layouts'
 import { CitiesSevices, PeopleSevices } from 'shared/services'
-import { T } from 'lang'
 
 const Dashboard: FC = () => {
   const [isLoadingPeople, setIsLoadingPeople] = useState(false)
